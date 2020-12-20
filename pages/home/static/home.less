@@ -1,9 +1,10 @@
-@import './default.less';
+@import "./default.less";
 .home-page {
   .fd-content {
     min-width: 1216px;
-    background: #FFF;
-    font-family: PingFangSC, Helvetica Neue, Helvetica, PingFang SC-Light, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+    background: #fff;
+    font-family: PingFangSC, Helvetica Neue, Helvetica, PingFang SC-Light,
+      Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
   }
   h2,
   h3,
@@ -22,7 +23,7 @@
       padding: 0 24px;
       overflow: hidden;
       height: 100%;
-      >div {
+      > div {
         float: left;
         width: 100%;
       }
@@ -64,7 +65,7 @@
     width: 40px;
     height: 2px;
     display: block;
-    background: #FFBF00;
+    background: #ffbf00;
     margin: 16px auto 72px;
   }
   /* banner 区域 */
@@ -138,8 +139,10 @@
     }
   }
   .home-hover {
-    border: 1px solid #E9E9E9;
-    transition: transform .45s cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow .45s cubic-bezier(0.645, 0.045, 0.355, 1), border .45s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border: 1px solid #e9e9e9;
+    transition: transform 0.45s cubic-bezier(0.645, 0.045, 0.355, 1),
+      box-shadow 0.45s cubic-bezier(0.645, 0.045, 0.355, 1),
+      border 0.45s cubic-bezier(0.645, 0.045, 0.355, 1);
     &:hover {
       transform: translateY(-4px);
       box-shadow: 0 2px 24px fade(#000, 10);
@@ -194,7 +197,7 @@
         height: 440px;
         .icon-hover {
           opacity: 0;
-          transition: opacity .45s;
+          transition: opacity 0.45s;
         }
         &:hover {
           .icon-hover {
@@ -216,7 +219,7 @@
       p {
         margin-bottom: 12px;
         color: @contentColor;
-        transition: color .3s;
+        transition: color 0.3s;
         font-weight: 400;
       }
       .exp {

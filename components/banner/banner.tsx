@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import QueueAnim from "rc-queue-anim";
 import { Button } from "antd";
-import BannerImage from "../../components/banner/BannerImage";
+import BannerImage from "./BannerImage";
 
 class Banner extends React.PureComponent {
   static propTypes = {

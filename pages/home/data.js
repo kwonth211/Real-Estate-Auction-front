@@ -1,59 +1,69 @@
-import React from 'react';
+import React from "react";
 
 export const page1 = [
   {
-    title: '轻松建站',
-    content: '支持可视化编辑、自由拖拽排版、实时预览、在线访问加速等功能',
-    src: 'https://gw.alipayobjects.com/zos/rmsportal/MmROsqZndrFBrIspzLlL.png',
+    title: "轻松建站",
+    content: "支持可视化编辑、自由拖拽排版、实时预览、在线访问加速等功能",
+    src: "https://gw.alipayobjects.com/zos/rmsportal/MmROsqZndrFBrIspzLlL.png",
   },
   {
-    title: '数据分析',
-    content: '网站内设有数据监测埋点，助你时刻掌握站点效果，鉴别有效渠道',
-    src: 'https://gw.alipayobjects.com/zos/rmsportal/ONvKhpRAmkCfdEhkUZkJ.png',
+    title: "数据分析",
+    content: "网站内设有数据监测埋点，助你时刻掌握站点效果，鉴别有效渠道",
+    src: "https://gw.alipayobjects.com/zos/rmsportal/ONvKhpRAmkCfdEhkUZkJ.png",
   },
   {
-    title: '企业协同',
-    content: '企业版支持以团队管理的方式，多人协作完成营销站点，共享资源',
-    src: 'https://gw.alipayobjects.com/zos/rmsportal/oxmXLgGjCeXfYPcVSbKg.png',
+    title: "企业协同",
+    content: "企业版支持以团队管理的方式，多人协作完成营销站点，共享资源",
+    src: "https://gw.alipayobjects.com/zos/rmsportal/oxmXLgGjCeXfYPcVSbKg.png",
   },
 ];
 
 export const page2 = [
   {
-    title: '端午节',
-    url: 'https://render.alipay.com/p/f/fd-jauizbz9/index.html',
-    image: 'https://gw.alipayobjects.com/zos/rmsportal/VMhxnfHxvCgksDCnbfQX.jpg',
+    title: "端午节",
+    url: "https://render.alipay.com/p/f/fd-jauizbz9/index.html",
+    image:
+      "https://gw.alipayobjects.com/zos/rmsportal/VMhxnfHxvCgksDCnbfQX.jpg",
   },
   {
-    title: '余额宝4周年',
-    url: 'https://render.alipay.com/p/f/fd-jauj8apg/index.html',
-    image: 'https://gw.alipayobjects.com/zos/rmsportal/kJCZlvEAvTnyLVqzrhzH.jpg',
+    title: "余额宝4周年",
+    url: "https://render.alipay.com/p/f/fd-jauj8apg/index.html",
+    image:
+      "https://gw.alipayobjects.com/zos/rmsportal/kJCZlvEAvTnyLVqzrhzH.jpg",
   },
   {
-    title: '支付宝付款',
-    url: 'http://www.anijue.com/p/q/j5rxse2a/pages/home/index.html',
-    image: 'https://gw.alipayobjects.com/zos/rmsportal/yKHLCeGLgdFoxFXhzFtu.jpg',
+    title: "支付宝付款",
+    url: "http://www.anijue.com/p/q/j5rxse2a/pages/home/index.html",
+    image:
+      "https://gw.alipayobjects.com/zos/rmsportal/yKHLCeGLgdFoxFXhzFtu.jpg",
   },
 ];
 
 export const page3 = [
   {
-    title: '个人版',
+    title: "个人版",
     content: [
       <p key="1">支持 H5 站点制作</p>,
       <p key="2">支持模板管理</p>,
       <p key="3">支持数据分析</p>,
     ],
     // exp: '免费使用',
-    svg: (<svg width="32px" height="32px" viewBox="0 0 32 32">
-      <defs>
-        <linearGradient x1="50%" y1="0%" x2="50%" y2="98.8500478%" id="linearGradient-1">
-          <stop stopColor="#FFD24C" offset="0%" />
-          <stop stopColor="#FFB800" offset="100%" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M11.2,19.9763991 L1.43301577,25.9589289
+    svg: (
+      <svg width="32px" height="32px" viewBox="0 0 32 32">
+        <defs>
+          <linearGradient
+            x1="50%"
+            y1="0%"
+            x2="50%"
+            y2="98.8500478%"
+            id="linearGradient-1"
+          >
+            <stop stopColor="#FFD24C" offset="0%" />
+            <stop stopColor="#FFB800" offset="100%" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M11.2,19.9763991 L1.43301577,25.9589289
            C0.542750835,26.5042392 1.20441457e-15,27.4731633 1.33226763e-15,28.5171628
               L0,28.5171628 L0,30 C1.3527075e-16,31.1045695 0.8954305,32 2,32
               L30,32 C31.1045695,32 32,31.1045695 32,30 L32,30 L32,28.5391533
@@ -62,10 +72,10 @@ export const page3 = [
               L23.2,7.2 C23.2,3.2235498 19.9764502,-7.30462051e-16 16,0
               C12.0235498,7.30462051e-16 8.8,3.2235498 8.8,7.2 L8.8,7.2
               L8.8,12.7384615 C8.8,14.8708611 9.72700154,16.7867478 11.2,18.1051172 L11.2,19.9763991 Z"
-        fill="#D9D9D9"
-      />
-      <path
-        d="M11.2,19.9763991 L1.43301577,25.9589289
+          fill="#D9D9D9"
+        />
+        <path
+          d="M11.2,19.9763991 L1.43301577,25.9589289
         C0.542750835,26.5042392 1.20441457e-15,27.4731633 1.33226763e-15,28.5171628
               L0,28.5171628 L0,30 C1.3527075e-16,31.1045695 0.8954305,32 2,32
               L30,32 C31.1045695,32 32,31.1045695 32,30 L32,30 L32,28.5391533
@@ -74,13 +84,14 @@ export const page3 = [
               L23.2,7.2 C23.2,3.2235498 19.9764502,-7.30462051e-16 16,0
               C12.0235498,7.30462051e-16 8.8,3.2235498 8.8,7.2 L8.8,7.2
               L8.8,12.7384615 C8.8,14.8708611 9.72700154,16.7867478 11.2,18.1051172 L11.2,19.9763991 Z"
-        fill="url(#linearGradient-1)"
-        className="icon-hover"
-      />
-    </svg>),
+          fill="url(#linearGradient-1)"
+          className="icon-hover"
+        />
+      </svg>
+    ),
   },
   {
-    title: '企业版',
+    title: "企业版",
     content: [
       <p key="1">支持 H5 站点制作</p>,
       <p key="2">支持模板管理，实现模板共享</p>,
@@ -116,16 +127,18 @@ export const page3 = [
           fill="url(#linearGradient-1)"
           className="icon-hover"
         />
-      </svg>),
+      </svg>
+    ),
   },
   {
-    title: '企业 VIP 版',
+    title: "企业 VIP 版",
     content: [
       <p key="1">支持通过 OpenAPI 调用制作流程</p>,
       <p key="2">可以指定可用模板，企业内共享模板</p>,
       <p key="3">支持创建多个企业级账户</p>,
       <p key="4">支持自定义发布审批流</p>,
-      <p key="5">支持自定义域名</p>],
+      <p key="5">支持自定义域名</p>,
+    ],
     svg: (
       <svg width="32px" height="32px" viewBox="0 0 32 32">
         <path
@@ -227,25 +240,18 @@ export const page3 = [
           fill="url(#linearGradient-1)"
           className="icon-hover"
         />
-      </svg>),
+      </svg>
+    ),
   },
 ];
 
 export const page4 = [
-  'https://gw.alipayobjects.com/zos/rmsportal/kJPmZttedahfIvsZDGTd.svg',
-  'https://gw.alipayobjects.com/zos/rmsportal/ktLOdfjNyExgKyWjiCvm.svg',
-  'https://gw.alipayobjects.com/zos/rmsportal/gNNxbrNqlHdnRuMjUXrL.svg',
-  'https://gw.alipayobjects.com/zos/rmsportal/qWaneWxxMVpASpiCOcsT.svg',
-  'https://gw.alipayobjects.com/zos/rmsportal/kyCpvqWFloOpAOqzOlBg.svg',
-  'https://gw.alipayobjects.com/zos/rmsportal/bBzJNEnPvyhNUhyHipvO.svg',
-  'https://gw.alipayobjects.com/zos/rmsportal/UbEpCMXGBmDgkJXfIgMx.svg',
-  'https://gw.alipayobjects.com/zos/rmsportal/xsWGKOdkRoJnzHIZlRiD.svg',
-];
-
-export const footer = [
-  { text: '解决方案', src: '#' },
-  { text: '使用帮助', src: '#' },
-  { text: '模板开发文档', src: '#' },
-  { text: '模板开发工具', src: '#' },
-  { text: '联系我们', src: 'mailto:zhao.wuz@antfin.com' },
+  "https://gw.alipayobjects.com/zos/rmsportal/kJPmZttedahfIvsZDGTd.svg",
+  "https://gw.alipayobjects.com/zos/rmsportal/ktLOdfjNyExgKyWjiCvm.svg",
+  "https://gw.alipayobjects.com/zos/rmsportal/gNNxbrNqlHdnRuMjUXrL.svg",
+  "https://gw.alipayobjects.com/zos/rmsportal/qWaneWxxMVpASpiCOcsT.svg",
+  "https://gw.alipayobjects.com/zos/rmsportal/kyCpvqWFloOpAOqzOlBg.svg",
+  "https://gw.alipayobjects.com/zos/rmsportal/bBzJNEnPvyhNUhyHipvO.svg",
+  "https://gw.alipayobjects.com/zos/rmsportal/UbEpCMXGBmDgkJXfIgMx.svg",
+  "https://gw.alipayobjects.com/zos/rmsportal/xsWGKOdkRoJnzHIZlRiD.svg",
 ];
