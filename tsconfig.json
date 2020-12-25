@@ -3,22 +3,16 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "Node",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    // "outDir": "./dist",
+    // "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -28,11 +22,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": [
-    "src/**/*",
-    "src/env.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./**/*", "./env.ts"],
+  "exclude": ["node_modules"]
 }
