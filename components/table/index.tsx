@@ -117,13 +117,7 @@ const TableComponent = () => {
   ];
 
   const openModalFunc = async (courtId) => {
-    const params = {
-      params: {
-        courtId,
-      },
-    };
-
-    const { data } = await axios.get(`/land?id=4`);
+    const { data } = await axios.get(`/land/${courtId}`);
 
     setLandList([...data.landList]);
     openModal();
