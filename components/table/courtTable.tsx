@@ -6,6 +6,10 @@ import styled from "styled-components";
 import { Modal, Button } from "antd";
 import useModal from "@/hooks/modal";
 import ModalTable from "./landTale";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCourt } from "./courtSlice";
+import { fetchTodos } from "./service";
+
 const Wrapper = styled.div`
   /* height: 1000px; */
   .ant-table-body {
@@ -15,10 +19,24 @@ const Wrapper = styled.div`
   }
 `;
 
-const TableComponent = () => {
+const CourtTable = () => {
+  const dispatch = useDispatch();
   const [courtList, setCourtList] = useState([]);
   const [landList, setLandList] = useState([]);
   const { openModal, closeModal, modalVisibility } = useModal();
+
+  const { courtList: response, loading, error } = useSelector(selectCourt);
+
+  useEffect(() => {
+    if (response) {
+      const { courtList } = response;
+      setCourtList([...courtList]);
+    }
+  }, [response]);
+
+  useEffect(() => {
+    dispatch(fetchTodos(1));
+  }, []);
 
   const columns = [
     {
@@ -123,14 +141,6 @@ const TableComponent = () => {
     openModal();
   };
 
-  useEffect(() => {
-    async function testApi() {
-      const { data } = await axios.get(`/court`);
-      setCourtList([...data.courtList]);
-    }
-    testApi();
-  }, []);
-
   console.log(courtList);
   return (
     <Wrapper>
@@ -159,4 +169,4 @@ const TableComponent = () => {
   );
 };
 
-export default TableComponent;
+export default CourtTable;
