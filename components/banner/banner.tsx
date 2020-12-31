@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import QueueAnim from "rc-queue-anim";
 import { Button } from "antd";
 import styled from "styled-components";

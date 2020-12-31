@@ -48,6 +48,7 @@ const errorHandler = (error) => {
 //   headers: { 'Content-Type': 'text/html' },
 // });
 
-module.exports = {
-  axios,
-};
+export { axios };
+// module.exports = {
+//   axios,
+// };

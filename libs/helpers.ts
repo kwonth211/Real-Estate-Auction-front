@@ -49,8 +49,8 @@ export function windDirection(degree) {
     degree = degree % 360;
   }
 
-  const which = parseInt(degree / 45, 10);
-  return sectors[which];
+  // const which = parseInt(degree / 45, 10);
+  return sectors[0];
 }
 
 // Get weather icon class
@@ -86,7 +86,7 @@ export async function getWeather(city, country, days) {
       .catch(console.error);
 
     if (forecast_call !== undefined) {
-      forecast = await forecast_call.json();
+      // forecast = await forecast_call.json();
     }
 
     return forecast;

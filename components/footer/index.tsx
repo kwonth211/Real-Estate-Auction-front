@@ -8,8 +8,6 @@ import Link from "next/link";
 
 const Wrapper = styled.div`
   width: 100%;
-  border-top: ${(props) =>
-    props.hideFooterBorder ? "none" : "1px solid #000"};
 `;
 
 const FirstRow = styled.div``;
@@ -29,7 +27,11 @@ const SecondRow = styled.div`
   }
 `;
 
-const Container = styled.div`
+interface ContainerType {
+  height: string;
+}
+
+const Container = styled.div<ContainerType>`
   width: 100%;
   height: ${(props) => props.height};
   max-width: 1200px;
@@ -50,8 +52,11 @@ const SecondColumn = styled.div`
   justify-content: space-between;
   width: 166px;
 `;
-
-const FlexDiv = styled.div`
+interface test {
+  itemMarginRight: string;
+  maxWidth: string;
+}
+const FlexDiv = styled.div<test>`
   display: flex;
   width: 100%;
   font-size: 12px;
@@ -112,6 +117,7 @@ const menuArray = ["FAQ"];
 const Footer = (props) => {
   const { hideFooterBorder = false } = props;
   // const mobile = useCheckMobile();
+
   const router = useRouter();
 
   const PcInfo = () => {
@@ -143,7 +149,7 @@ const Footer = (props) => {
     }
   };
   return (
-    <Wrapper hideFooterBorder={hideFooterBorder}>
+    <Wrapper>
       <FirstRow>
         <Container height="195px">
           <FooterCompany>

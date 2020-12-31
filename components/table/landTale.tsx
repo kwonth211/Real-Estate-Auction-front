@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { Table, Tag, Space } from "antd";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLand } from "./landSlice";
 
 const columns = [
   {
@@ -88,11 +90,13 @@ const data = [
 
 const Wrapper = styled.div``;
 
-const LandTable = ({ landList }) => {
-  console.log(landList);
+const LandTable = () => {
+  const { landList, loading, error } = useSelector(selectLand);
+
   return (
     <Wrapper>
       <Table
+        loading={loading}
         columns={columns}
         dataSource={landList}
         bordered

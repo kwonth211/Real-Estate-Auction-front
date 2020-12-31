@@ -17,18 +17,6 @@ const MobileInfoWrapper = styled(Collapse)`
   }
 `;
 
-const moveMenu = (e) => {
-  const menuText = e.target.innerText;
-  switch (menuText) {
-    case "FAQ":
-      router.push("/faq");
-      break;
-
-    default:
-      break;
-  }
-};
-
 const menuArray = ["FAQ"];
 
 const Astyled = styled.a`
@@ -58,7 +46,7 @@ const MobileInfo = () => {
       </Panel>
       <Panel header="Customer" key="2">
         {menuArray.map((e, i) => (
-          <div key={i} className="menu" onClick={moveMenu}>
+          <div key={i} className="menu">
             {e}
           </div>
         ))}

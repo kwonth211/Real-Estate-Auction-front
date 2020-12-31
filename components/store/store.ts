@@ -21,7 +21,6 @@ const store = configureStore({
 export const rrfProps = {
   //   config: rrfConfig,
   dispatch: store.dispatch,
-  //   createFirestoreInstance,
 };
 
 // if (process.env.NODE_ENV === "development" && module.hot) {

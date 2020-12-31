@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3005",
+    "devCommnets": "tsc-watch --onSuccess \"next --port 3005 \" ",
+    "dev": "next --port 3005",
     "build": "next build",
-    "start": "next start --port 3005"
+    "start": "next start --port 3005",
+    "tsc": "tsc -w"
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
+    "@babel/core": "^7.12.10",
     "@reduxjs/toolkit": "^1.5.0",
     "@types/styled-components": "^5.1.7",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
     "antd": "^4.9.4",
     "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.12.0",
@@ -26,11 +30,13 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-redux": "^7.2.2",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "tsc-watch": "^4.2.9"
   },
   "devDependencies": {
     "@types/node": "^14.14.14",
     "@types/react": "^17.0.0",
+    "fork-ts-checker-webpack-plugin": "^6.0.8",
     "typescript": "^4.1.3"
   }
 }

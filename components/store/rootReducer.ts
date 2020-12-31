@@ -2,6 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 
 // Reducers
 import courtReducer from "@/components/table/courtSlice";
+import landReducer from "@/components/table/landSlice";
 // import todosReducer from 'features/todos/todosSlice'
 // import usersReducer from 'features/users/usersSlice'
 // import visibilityFilterReducer from 'features/visibilityFilter/filtersSlice'
@@ -9,6 +10,7 @@ import courtReducer from "@/components/table/courtSlice";
 
 const rootReducer = combineReducers({
   court: courtReducer,
+  land: landReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

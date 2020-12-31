@@ -19,7 +19,6 @@ const Container = styled.div`
   margin: 0 auto;
   margin-top: 80px;
   position: relative;
-  /* margin-top: ${({ marginTop }) => (marginTop ? marginTop : "130px")}; */
   @media (max-width: 640px) {
     margin-top: 50px;
   }

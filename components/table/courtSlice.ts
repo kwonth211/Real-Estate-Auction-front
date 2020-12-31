@@ -1,28 +1,38 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/components/store/rootReducer";
-import { fetchTodos } from "./service";
+import { axios } from "../../libs/axios";
+
 // Utils
-// import { mockIncrement } from "utilities/mockAPI";
 
-// Async actions
-export const incrementByAmountAsync = createAsyncThunk(
-  "counter/incrementByAmount",
-  async (payload: number, { rejectWithValue }) => {
-    try {
-      //   const response = await mockIncrement(payload);
-      //   return response.data;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
-  }
-);
+interface MyKnownError {
+  errorMessage: string;
+}
 
-// Types
+// interface FindCourtListAttribute {
+//   status: number;
+//   courtList: Array<any>;
+//   completed: boolean;
+// }
 type CourtState = {
   courtList: Array<any>;
   loading: boolean;
   error: any;
 };
+
+export const findCourtList = createAsyncThunk<CourtState>( // 성공 시 리턴 타입
+  // { rejectValue: MyKnownError } // thunkApi 정의({dispatch?, state?, extra?, rejectValue?})
+  "court/list",
+  async (userId, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/court`);
+      return data;
+    } catch (e) {
+      // return rejectWithValue({ errorMessage: "알 수 없는 에러가 발생했습니다." });
+    }
+  }
+);
+
+// Types
 
 const initialState: CourtState = {
   courtList: [],
@@ -31,46 +41,24 @@ const initialState: CourtState = {
 };
 
 export const counterSlice = createSlice({
-  name: "counter",
+  name: "court/list",
   initialState,
   reducers: {
-    // increment: (state) => {
-    //   state.value = state.value + 1;
-    // },
-    // decrement: (state) => {
-    //   state.value = state.value - 1;
-    // },
-    // incrementByAmount: (state, { payload }: PayloadAction<number>) => {
-    //   state.value = state.value + payload;
-    // },
     reset: () => initialState,
   },
   extraReducers: (builder) => {
-    // [incrementByAmountAsync.pending.type]: (state) => {
-    //   state.loading = "pending";
-    // },
-    // [incrementByAmountAsync.fulfilled.type]: (
-    //   state,
-    //   { payload }: PayloadAction<number>
-    // ) => {
-    //   state.loading = "idle";
-    //   state.value = state.value + payload;
-    // },
-    // [incrementByAmountAsync.rejected.type]: (state, { payload }) => {
-    //   state.loading = "idle";
-    //   state.error = payload;
-    // },
     builder
-      .addCase(fetchTodos.pending, (state) => {
+      .addCase(findCourtList.pending, (state) => {
         state.error = null;
         state.loading = true;
       })
-      .addCase(fetchTodos.fulfilled, (state, { payload }) => {
+      .addCase(findCourtList.fulfilled, (state, { payload }) => {
+        const { courtList } = payload;
         state.error = null;
         state.loading = false;
-        state.courtList = payload;
+        state.courtList = courtList;
       })
-      .addCase(fetchTodos.rejected, (state, { payload }) => {
+      .addCase(findCourtList.rejected, (state, { payload }) => {
         state.error = payload;
         state.loading = false;
       });

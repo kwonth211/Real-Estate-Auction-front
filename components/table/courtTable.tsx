@@ -7,8 +7,9 @@ import { Modal, Button } from "antd";
 import useModal from "@/hooks/modal";
 import ModalTable from "./landTale";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCourt } from "./courtSlice";
-import { fetchTodos } from "./service";
+import { findCourtList, selectCourt } from "./courtSlice";
+import { findLand } from "./landSlice";
+// import { fetchTodos } from "./service";
 
 const Wrapper = styled.div`
   /* height: 1000px; */
@@ -21,21 +22,13 @@ const Wrapper = styled.div`
 
 const CourtTable = () => {
   const dispatch = useDispatch();
-  const [courtList, setCourtList] = useState([]);
   const [landList, setLandList] = useState([]);
   const { openModal, closeModal, modalVisibility } = useModal();
 
-  const { courtList: response, loading, error } = useSelector(selectCourt);
+  const { courtList, loading, error } = useSelector(selectCourt);
 
   useEffect(() => {
-    if (response) {
-      const { courtList } = response;
-      setCourtList([...courtList]);
-    }
-  }, [response]);
-
-  useEffect(() => {
-    dispatch(fetchTodos(1));
+    dispatch(findCourtList());
   }, []);
 
   const columns = [
@@ -44,7 +37,7 @@ const CourtTable = () => {
       dataIndex: "caseNumber",
       key: "caseNumber",
       width: 200,
-      fixed: "left",
+      // fixed: "left",
       filters: [
         {
           text: "Joe",
@@ -119,7 +112,7 @@ const CourtTable = () => {
       dataIndex: "court_id",
       key: "court_id",
       width: 80,
-      fixed: "right",
+      // fixed: "right",
       render: (courtId) => {
         return (
           <a
@@ -135,16 +128,14 @@ const CourtTable = () => {
   ];
 
   const openModalFunc = async (courtId) => {
-    const { data } = await axios.get(`/land/${courtId}`);
-
-    setLandList([...data.landList]);
+    dispatch(findLand(courtId));
     openModal();
   };
 
-  console.log(courtList);
   return (
     <Wrapper>
       <Table
+        loading={loading}
         columns={columns}
         dataSource={courtList}
         bordered
@@ -163,7 +154,7 @@ const CourtTable = () => {
           </Button>,
         ]}
       >
-        <ModalTable landList={landList} />
+        <ModalTable />
       </Modal>
     </Wrapper>
   );

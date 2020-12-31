@@ -164,25 +164,6 @@ const LoginWrapper = styled.div`
   }
 `;
 
-const BottomContainer = styled.div`
-  display: flex;
-  white-space: nowrap;
-  overflow-x: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  animation: ${(props) =>
-    props.sticky === true
-      ? css`
-          ${fadeOut} 1s ease;
-        `
-      : css`
-          ${fadeIn} 1s ease;
-        `};
-`;
-
 const Desktop = () => {
   const [sticky, setSticky] = useState(false);
 
