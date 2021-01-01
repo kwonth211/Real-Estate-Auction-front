@@ -14,8 +14,8 @@ const columns = [
   },
   {
     title: "가격",
-    dataIndex: "Quote",
-    key: "Quote",
+    dataIndex: "quote",
+    key: "quote",
   },
   {
     title: "타입",
@@ -64,45 +64,25 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
-
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .ant-table-body {
+    max-height: 1000px !important;
+  }
+`;
 
 const LandTable = () => {
   const { landList, loading, error } = useSelector(selectLand);
-
   return (
     <Wrapper>
       <Table
         loading={loading}
         columns={columns}
+        pagination={{ pageSize: 10 }}
         dataSource={landList}
         bordered
-        size="middle"
+        size="large"
         scroll={{ x: "calc(700px + 50%)", y: 240 }}
-        rowKey="land_id"
+        rowKey="landId"
       />
     </Wrapper>
   );

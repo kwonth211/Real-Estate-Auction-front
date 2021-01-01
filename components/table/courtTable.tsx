@@ -5,7 +5,7 @@ import { axios } from "../../libs/axios";
 import styled from "styled-components";
 import { Modal, Button } from "antd";
 import useModal from "@/hooks/modal";
-import ModalTable from "./landTale";
+import ModalTable from "./landTable";
 import { useDispatch, useSelector } from "react-redux";
 import { findCourtList, selectCourt } from "./courtSlice";
 import { findLand } from "./landSlice";
@@ -14,7 +14,7 @@ import { findLand } from "./landSlice";
 const Wrapper = styled.div`
   /* height: 1000px; */
   .ant-table-body {
-    overflow-x: hidden !important;
+    /* overflow-x: hidden !important; */
     overflow-y: hidden !important;
     max-height: 1100px !important;
   }
@@ -22,9 +22,8 @@ const Wrapper = styled.div`
 
 const CourtTable = () => {
   const dispatch = useDispatch();
-  const [landList, setLandList] = useState([]);
-  const { openModal, closeModal, modalVisibility } = useModal();
 
+  const { openModal, closeModal, modalVisibility } = useModal();
   const { courtList, loading, error } = useSelector(selectCourt);
 
   useEffect(() => {
@@ -70,7 +69,9 @@ const CourtTable = () => {
           dataIndex: "locationList",
           key: "locationList",
           render: (locationList) => {
-            return locationList.map(({ location }) => <div>{location}</div>);
+            return locationList.map(({ location, i }) => (
+              <div key={`location${i}`}>{location}</div>
+            ));
           },
         },
         {
@@ -79,7 +80,9 @@ const CourtTable = () => {
           key: "locationList",
           width: 100,
           render: (locationList) => {
-            return locationList.map(({ area }) => <div>{area}㎡</div>);
+            return locationList.map(({ area, i }) => (
+              <div key={`area${i}`}>{area}㎡</div>
+            ));
           },
         },
       ],
@@ -109,8 +112,8 @@ const CourtTable = () => {
 
     {
       title: "매물보기",
-      dataIndex: "court_id",
-      key: "court_id",
+      dataIndex: "courtId",
+      key: "courtId",
       width: 80,
       // fixed: "right",
       render: (courtId) => {
@@ -141,7 +144,7 @@ const CourtTable = () => {
         bordered
         size="middle"
         scroll={{ x: "calc(700px + 50%)", y: 240 }}
-        rowKey="court_id"
+        rowKey="courtId"
       />
       <Modal
         width={1100}

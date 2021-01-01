@@ -52,11 +52,11 @@ const SecondColumn = styled.div`
   justify-content: space-between;
   width: 166px;
 `;
-interface test {
+interface FlexdivType {
   itemMarginRight: string;
   maxWidth: string;
 }
-const FlexDiv = styled.div<test>`
+const FlexDiv = styled.div<FlexdivType>`
   display: flex;
   width: 100%;
   font-size: 12px;
