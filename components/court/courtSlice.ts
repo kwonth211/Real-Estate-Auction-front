@@ -1,38 +1,21 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/components/store/rootReducer";
-import { axios } from "../../libs/axios";
-import { Court } from "@/interface";
-// Utils
+import { findCourtList } from "./action";
 
-interface MyKnownError {
-  errorMessage: string;
-}
-type CourtState = {
+import { Court } from "./";
+
+export type CourtState = {
   courtList: Array<Court>;
   loading: boolean;
   error: any;
 };
-// Types
+
 const initialState: CourtState = {
   courtList: [],
   loading: false,
   error: null,
 };
-
-export const findCourtList = createAsyncThunk<CourtState>( // 성공 시 리턴 타입
-  // { rejectValue: MyKnownError } // thunkApi 정의({dispatch?, state?, extra?, rejectValue?})
-  "court/list",
-  async (userId, thunkAPI) => {
-    try {
-      const { data } = await axios.get(`/court/list`);
-      return data;
-    } catch (e) {
-      // return rejectWithValue({ errorMessage: "알 수 없는 에러가 발생했습니다." });
-    }
-  }
-);
-
-export const counterSlice = createSlice({
+export const courtSlice = createSlice({
   name: "court/list",
   initialState,
   reducers: {
@@ -57,8 +40,6 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { reset } = counterSlice.actions;
+export const { reset } = courtSlice.actions;
 
-export const selectCourt = (state: RootState) => state.court;
-
-export default counterSlice.reducer;
+export default courtSlice.reducer;

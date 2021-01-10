@@ -1,3 +1,5 @@
+import { Land } from "./../land";
+
 export interface Court {
   caseNumber?: string;
   itemNumber?: string;
@@ -11,16 +13,10 @@ export interface Court {
   landList?: Array<Land>;
 }
 
-export interface Location {
+export interface location {
   location?: string;
   area?: string;
 }
 
-export interface Land {
-  gubun?: string;
-  buildingNumber?: string;
-  Quote?: string;
-  floors?: string;
-  areaType?: string;
-  area?: string;
-}
+export { default as CourtSlice } from "./courtSlice";
+export { default as CourtTable } from "./courtTable";

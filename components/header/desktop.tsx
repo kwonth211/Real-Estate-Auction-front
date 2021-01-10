@@ -28,15 +28,11 @@ export const TopRow = styled.div`
   justify-content: flex-end;
 `;
 
-export const MiddleMenu = styled.div`
+export const SignMenu = styled.div`
   display: flex;
   align-items: center;
   margin-right: 25px;
   height: 20px;
-
-  & > div:nth-child(1) {
-    padding-right: 10px;
-  }
 `;
 
 export const ImageDiv = styled.div`
@@ -96,6 +92,7 @@ const ShowAllButton = styled.div`
 export const LogoWrapper = styled.div`
   margin-top: 20px;
   margin-left: 3px;
+  color: black;
 `;
 
 export const TopContainer = styled.div`
@@ -141,26 +138,14 @@ export const OneMoreMenuText = styled.div`
 `;
 
 const LoginWrapper = styled.div`
+  display: inline;
+  margin-right: 30px;
   & > a {
-    display: flex;
-    margin: 0;
-    align-items: center;
     & > svg {
       margin-right: 7px;
     }
-    color: #979797;
+    color: black;
     transition: all 0.5s ease;
-
-    & > svg > g > path {
-      fill: #979797;
-      transition: all 0.5s ease;
-    }
-    &:hover {
-      color: black;
-      & > svg > g > path {
-        fill: black;
-      }
-    }
   }
 `;
 
@@ -191,14 +176,23 @@ const Desktop = () => {
           </Link>
         </ImageDiv>
         <TopRow>
-          <MiddleMenu>
+          <SignMenu>
             <div>
               <h1>
-                {/* <ImgStyled /> */}
-                {/* <span>dsadas</span> */}
+                <Link href="/signin">
+                  <LoginWrapper>
+                    <a>로그인</a>
+                  </LoginWrapper>
+                </Link>
+
+                <Link href="/signup">
+                  <LoginWrapper>
+                    <a>회원가입</a>
+                  </LoginWrapper>
+                </Link>
               </h1>
             </div>
-          </MiddleMenu>
+          </SignMenu>
           {/* {session ? (
             <LoginMenu />
           ) : (

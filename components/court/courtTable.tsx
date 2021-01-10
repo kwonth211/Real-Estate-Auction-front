@@ -1,20 +1,17 @@
-import { Table } from "antd";
 import React, { useEffect, useState } from "react";
-import QueueAnim from "rc-queue-anim";
-import { axios } from "../../libs/axios";
-import styled from "styled-components";
-import { Modal, Button } from "antd";
-import useModal from "@/hooks/modal";
-import ModalTable from "./landTable";
 import { useDispatch, useSelector } from "react-redux";
-import { findCourtList, selectCourt } from "./courtSlice";
-import { findLand } from "./landSlice";
-// import { fetchTodos } from "./service";
+import QueueAnim from "rc-queue-anim";
+import styled from "styled-components";
+import { Modal, Button, Table } from "antd";
+
+import useModal from "@/hooks/modal";
+import ModalTable from "@/components/land/landTable";
+import { findLand } from "@/components/land/action";
+import { findCourtList } from "./action";
+import { RootState } from "../store/rootReducer";
 
 const Wrapper = styled.div`
-  /* height: 1000px; */
   .ant-table-body {
-    /* overflow-x: hidden !important; */
     overflow-y: hidden !important;
     max-height: 1100px !important;
   }
@@ -24,7 +21,9 @@ const CourtTable = () => {
   const dispatch = useDispatch();
 
   const { openModal, closeModal, modalVisibility } = useModal();
-  const { courtList, loading, error } = useSelector(selectCourt);
+  const { courtList, loading, error } = useSelector(
+    (state: RootState) => state.court
+  );
 
   useEffect(() => {
     dispatch(findCourtList());

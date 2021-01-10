@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 // Reducers
-import courtReducer from "@/components/table/courtSlice";
-import landReducer from "@/components/table/landSlice";
+import courtReducer from "@/components/court/courtSlice";
+import landReducer from "@/components/land/landSlice";
 // import todosReducer from 'features/todos/todosSlice'
 // import usersReducer from 'features/users/usersSlice'
 // import visibilityFilterReducer from 'features/visibilityFilter/filtersSlice'

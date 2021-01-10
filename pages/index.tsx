@@ -1,7 +1,7 @@
 import React from "react";
 
 import Banner from "./../components/banner/banner";
-import Table from "../components/table/courtTable";
+import Table from "@/components/court/courtTable";
 import Layout from "./../components/layout";
 // import "./home/static/style";
 

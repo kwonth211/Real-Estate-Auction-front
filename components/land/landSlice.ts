@@ -1,14 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "@/components/store/rootReducer";
-import { axios } from "../../libs/axios";
+import { createSlice } from "@reduxjs/toolkit";
+import { Land } from "./";
+import { findLand } from "./action";
 
-import { Land } from "@/interface/";
-
-interface MyKnownError {
-  errorMessage: string;
-}
-
-type LandState = {
+export type LandState = {
   landList: Array<Land>;
   loading: boolean;
   error: any;
@@ -19,22 +13,6 @@ const initialState: LandState = {
   loading: false,
   error: null,
 };
-export const findLand = createAsyncThunk<
-  LandState,
-  number,
-  { rejectValue: MyKnownError }
->("land/find", async (courtId) => {
-  // 성공 시 리턴 타입
-  try {
-    const { data } = await axios.get(`/land/${courtId}`);
-
-    return data;
-  } catch (e) {
-    // return rejectWithValue({
-    //   errorMessage: "알 수 없는 에러가 발생했습니다.",
-    // });
-  }
-});
 
 export const landSlice = createSlice({
   name: "land/find",
@@ -60,6 +38,6 @@ export const landSlice = createSlice({
       });
   },
 });
-export const selectLand = (state: RootState) => state.land;
+// export const selectLand = (state: RootState) => state.land;
 
 export default landSlice.reducer;
