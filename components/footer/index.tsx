@@ -158,24 +158,23 @@ const Footer = (props) => {
               alt="logo"
               style={{ width: 152, objectFit: "contain", marginBottom: 16 }}
             /> */}
-            <FlexDiv itemMarginRight="40px" maxWidth="654px">
+            {/* <FlexDiv itemMarginRight="40px" maxWidth="654px">
               <div>
                 <strong>저작권:</strong> 네이버 부동산
                 <br />
                 <strong>Email:</strong> kwonth211@naver.com
               </div>
-            </FlexDiv>
+            </FlexDiv> */}
           </FooterCompany>
-          <FooterInfo>
-            <PcInfo />
-          </FooterInfo>
-          {/* <FooterInfo>{mobile ? <MobileInfo /> : <PcInfo />}</FooterInfo> */}
+          <FooterInfo>{/* <PcInfo /> */}</FooterInfo>
         </Container>
       </FirstRow>
       <SecondRow>
         <Container height="60px">
           <FooterCopyright>
             Copyright © 2020 kwontaehoon. All rights reserved.
+            <br />
+            <strong>Email:</strong> kwonth211@naver.com
           </FooterCopyright>
           <SecondColumn>
             <Link href="/policy">

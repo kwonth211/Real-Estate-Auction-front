@@ -27,8 +27,8 @@ const defaultValue = {
 
 const Wrapper = styled.div`
   /* background-color: #f5f5f5; */
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   padding-top: 30px;
   padding-bottom: 130px;
   @media (max-width: 640px) {
@@ -39,19 +39,20 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   height: 100%;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+  margin-top: 130px;
   padding: 40px;
+  padding-top: 30px;
+
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  /* box-shadow: 6px 6px 5px 10px rgba(0, 0, 0, 0.08); */
 
   background-color: #ffffff;
   @media (max-width: 640px) {
-    border-radius: 0px;
+    padding-top: 40px;
+    height: auto;
   }
 `;
 
@@ -85,64 +86,17 @@ const ButtonWrapper = styled.div`
 const SignUp = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const query = router.query["next-action"];
-
-  //   const methods = useForm({
-  //     mode: "onBlur",
-  //     shouldUnregister: false,
-  //   });
-  //   const { handleSubmit, setValue, control, reset, watch, errors } = methods;
-  //   const [session] = useSession();
-
-  //   const onSubmit = (data) => {
-  //     dispatch(temporarySaveSignUpForm(data));
-  //     dispatch(saveSignUpForm(completeSignUp));
-  //   };
-
-  //   const completeSignUp = (data) => {
-  //     signUpGtag();
-  //     signIn(data);
-  //     if (query) {
-  //       return router.push(`/${query}`);
-  //     }
-  //     router.push("/");
-  //   };
-
-  //   const signIn = ({ password, email }) => {
-  //     dispatch(signInAction({ password, email }));
-  //     reset({ ...defaultValue });
-  //   };
-
-  //   const signUpGtag = () => {
-  //     // GOOGLE-TAGMANAGER-TAG-3-SIGNUP
-  //     const signupTag = {
-  //       dataLayer: {
-  //         event: "signup",
-  //         method: "Mylight",
-  //       },
-  //     };
-  //     TagManager.dataLayer(signupTag);
-  //   };
-
-  //   const emailFieldValue = watch("email");
-  //   const passwordFieldValue = watch("password");
-  //   const rePasswordFieldValue = watch("rePassword");
-  //   const mobileFieldValue = watch("mobile");
-  //   const mobileCodeFieldValue = watch("mobileCode");
-  //   if (session) {
-  //     Router.replace("/");
-  //   }
 
   return (
     <Layout>
-      <Wrapper>
-        <Container>
-          <TitleWrapper>
-            <Title>회원가입</Title>
-          </TitleWrapper>
-          <SignUpForm />
-        </Container>
-      </Wrapper>
+      {/* <Wrapper> */}
+      <Container>
+        <TitleWrapper>
+          <Title>회원가입</Title>
+        </TitleWrapper>
+        <SignUpForm />
+      </Container>
+      {/* </Wrapper> */}
     </Layout>
   );
 };

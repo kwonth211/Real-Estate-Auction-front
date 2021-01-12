@@ -1,77 +1,27 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Input,
-  Tooltip,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete,
-} from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import styled from "styled-components";
+import { Form, Select, Checkbox, Button } from "antd";
+import Field from "@/components/common/Fields";
 
 const { Option } = Select;
 
-const residences = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-];
+const SubmitButton = styled(Button)`
+  width: 100%;
+`;
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
+const EmailButton = styled(Button)``;
+
+const EamilWrapper = styled.div`
+  display: flex;
+  & > div:nth-child(1) {
+    flex: auto;
+    margin-right: 10px;
+  }
+  input,
+  button {
+    // **Todo global css
+  }
+`;
 
 const SignupForm = () => {
   const [form] = Form.useForm();
@@ -80,26 +30,7 @@ const SignupForm = () => {
     console.log("Received values of form: ", values);
   };
 
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-
   const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
-
-  const onWebsiteChange = (value: string) => {
-    if (!value) {
-      setAutoCompleteResult([]);
-    } else {
-      setAutoCompleteResult(
-        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
-      );
-    }
-  };
 
   const websiteOptions = autoCompleteResult.map((website) => ({
     label: website,
@@ -108,7 +39,6 @@ const SignupForm = () => {
 
   return (
     <Form
-      {...formItemLayout}
       form={form}
       name="register"
       onFinish={onFinish}
@@ -118,111 +48,17 @@ const SignupForm = () => {
       }}
       scrollToFirstError
     >
-      <Form.Item
-        name="email"
-        label="이메일"
-        rules={[
-          {
-            type: "email",
-            message: "The input is not valid E-mail!",
-          },
-          {
-            required: true,
-            message: "Please input your E-mail!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+      <EamilWrapper>
+        <Field label="이메일" required={true} />
+        <EmailButton>인증하기</EmailButton>
+      </EamilWrapper>
+      <Field label="닉네임" required={true} />
 
-      <Form.Item
-        name="nickname"
-        label="닉네임"
-        rules={[
-          {
-            type: "email",
-            message: "The input is not valid E-mail!",
-          },
-          {
-            required: true,
-            message: "Please input your E-mail!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+      <Field label="이름" required={true} />
 
-      <Form.Item
-        name="password"
-        label="비밀번호"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-        hasFeedback
-      >
-        <Input.Password />
-      </Form.Item>
+      <Field label="비밀번호" type="password" required={true} />
 
-      <Form.Item
-        name="confirm"
-        label="비밀번호 확인"
-        dependencies={["password"]}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: "Please confirm your password!",
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue("password") === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(
-                "The two passwords that you entered do not match!"
-              );
-            },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="phone"
-        label="휴대전화"
-        rules={[{ required: true, message: "Please input your phone number!" }]}
-      >
-        <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
-      </Form.Item>
-
-      {/* <Form.Item
-        label="Captcha"
-        extra="We must make sure that your are a human."
-      >
-        <Row gutter={8}>
-          <Col span={12}>
-            <Form.Item
-              name="captcha"
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the captcha you got!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Button>Get captcha</Button>
-          </Col>
-        </Row>
-      </Form.Item> */}
+      <Field label="비밀번호 확인" type="password" required={true} />
 
       <Form.Item
         name="agreement"
@@ -235,16 +71,15 @@ const SignupForm = () => {
                 : Promise.reject("Should accept agreement"),
           },
         ]}
-        {...tailFormItemLayout}
       >
         <Checkbox>
           I have read the <a href="">agreement</a>
         </Checkbox>
       </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
-          Register
-        </Button>
+      <Form.Item>
+        <SubmitButton type="primary" htmlType="submit">
+          회원가입
+        </SubmitButton>
       </Form.Item>
     </Form>
   );
