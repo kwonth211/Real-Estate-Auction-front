@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { axios } from "../../libs/axios";
 import { CourtState } from "./courtSlice";
-interface MyKnownError {
-  errorMessage: string;
-}
 
 // Types
 

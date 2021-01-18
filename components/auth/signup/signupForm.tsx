@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Form, Select, Checkbox, Button } from "antd";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+
 import Field from "@/components/common/Fields";
+import { email } from "@/libs/validator";
+import { signUp } from "./action";
 
 const { Option } = Select;
 
@@ -17,71 +22,86 @@ const EamilWrapper = styled.div`
     flex: auto;
     margin-right: 10px;
   }
-  input,
   button {
-    // **Todo global css
+    margin-top: 30px;
   }
 `;
 
-const SignupForm = () => {
-  const [form] = Form.useForm();
+const defaultValues = {
+  email: "",
+  nickname: "",
+  name: "",
+  password: "",
+  rePassword: "",
+};
 
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+export type formValue = {
+  email: string;
+  nickname: string;
+  name: string;
+  password: string;
+};
+
+const SignupForm = () => {
+  const methods = useForm({
+    defaultValues: defaultValues,
+  });
+  const dispatch = useDispatch();
+
+  const { handleSubmit, errors, control, getValues } = methods;
+
+  const onSubmit = (data: formValue) => {
+    console.log("form data>>>", data);
+    dispatch(signUp(data));
   };
 
-  const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
+  const checkPasswordFunc = (resetPassword) =>
+    getValues("password") === resetPassword;
 
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
+  let rePasswordErrorMessage = "";
+  if (errors.rePassword && errors.rePassword.type === "validate") {
+    rePasswordErrorMessage = "비밀번호가 일치하지 않습니다.";
+  }
 
   return (
-    <Form
-      form={form}
-      name="register"
-      onFinish={onFinish}
-      initialValues={{
-        residence: ["zhejiang", "hangzhou", "xihu"],
-        prefix: "86",
-      }}
-      scrollToFirstError
-    >
+    <form onSubmit={handleSubmit(onSubmit)}>
       <EamilWrapper>
-        <Field label="이메일" required={true} />
+        <Field
+          label="이메일"
+          name="email"
+          required={true}
+          methods={methods}
+          pattern={email}
+        />
         <EmailButton>인증하기</EmailButton>
       </EamilWrapper>
-      <Field label="닉네임" required={true} />
+      <Field label="닉네임" name="nickname" required={true} methods={methods} />
+      <Field label="이름" name="name" required={true} methods={methods} />
+      <Field
+        label="비밀번호"
+        name="password"
+        type="password"
+        minLength={5}
+        required={true}
+        methods={methods}
+      />
+      <Field
+        label="비밀번호 확인"
+        name="rePassword"
+        type="password"
+        errorMessage={rePasswordErrorMessage}
+        required={true}
+        methods={methods}
+        validate={checkPasswordFunc}
+      />
 
-      <Field label="이름" required={true} />
-
-      <Field label="비밀번호" type="password" required={true} />
-
-      <Field label="비밀번호 확인" type="password" required={true} />
-
-      <Form.Item
-        name="agreement"
-        valuePropName="checked"
-        rules={[
-          {
-            validator: (_, value) =>
-              value
-                ? Promise.resolve()
-                : Promise.reject("Should accept agreement"),
-          },
-        ]}
-      >
-        <Checkbox>
-          I have read the <a href="">agreement</a>
-        </Checkbox>
-      </Form.Item>
-      <Form.Item>
-        <SubmitButton type="primary" htmlType="submit">
-          회원가입
-        </SubmitButton>
-      </Form.Item>
-    </Form>
+      <Checkbox>
+        I have read the <a href="">agreement</a>
+      </Checkbox>
+      <SubmitButton type="primary" htmlType="submit">
+        회원가입
+      </SubmitButton>
+    </form>
   );
 };
 

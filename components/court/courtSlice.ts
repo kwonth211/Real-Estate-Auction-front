@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "@/components/store/rootReducer";
+import { createSlice } from "@reduxjs/toolkit";
 import { findCourtList } from "./action";
 
 import { Court } from "./";

@@ -1,20 +1,45 @@
 import React from "react";
 import _ from "lodash";
 import styled from "styled-components";
+import { Form } from "antd";
 
 import Label from "./label";
 import InputField from "./InputField";
 
-const Wrapper = styled.div`
-  margin-bottom: 20px;
-`;
-
-interface props {
+interface Rules {
+  required?: boolean;
+  pattern?: any;
+  minLength?: number;
+  maxLength?: number;
+  validate?: any;
+  message?: string;
+}
+interface FieldProps extends Rules {
   label?: string;
   type?: string;
-  required?: boolean;
+  name: string;
+  methods: any;
+  errorMessage?: string;
 }
-const Field: React.FC<props> = ({ label, type, required = false }) => {
+
+type ValidateType = "error" | "success" | "warning" | "validating";
+
+const Wrapper = styled.div`
+  margin-bottom: 10px;
+`;
+
+const Field: React.FC<FieldProps> = ({
+  label,
+  type,
+  name,
+  methods,
+  pattern,
+  minLength,
+  maxLength,
+  validate,
+  errorMessage,
+  required = false,
+}) => {
   let Field = null;
 
   switch (type) {
@@ -25,46 +50,72 @@ const Field: React.FC<props> = ({ label, type, required = false }) => {
       Field = InputField;
   }
 
-  //   const error = _.get(errors, name);
+  const { errors, control } = methods;
 
-  //   const getErrorMessage = () => {
-  //     // 에러메시지가 입력 된 경우 에러메시지로 반환
-  //     if (errorMessage) {
-  //       return errorMessage;
-  //     }
+  const getErrorConfig = () => {
+    const { type } = _.get(errors, name) || "";
 
-  //     // 에러내에 에러메시지가 있을 경우 에러메시지로 반환
-  //     if (error?.message) {
-  //       return error.message;
-  //     }
+    if (errorMessage) {
+      return {
+        hasFeedback: true,
+        validateStatus: "error" as ValidateType,
+        help: errorMessage,
+      };
+    }
 
-  //     // 에러 메시지 및 에러안에 메시지가 지정이 안되어있을 경우 기본 메시지 입력
-  //     const errorType = error?.type;
-  //     let defaultErrorMessage;
+    switch (type) {
+      case "required":
+        return {
+          hasFeedback: true,
+          validateStatus: "error" as ValidateType,
+          help: "필수 항목입니다.",
+        };
+      case "minLength":
+        return {
+          hasFeedback: true,
+          validateStatus: "error" as ValidateType,
+          help: "최소 몇자리",
+        };
+      case "maxLength":
+        return {
+          hasFeedback: true,
+          validateStatus: "error" as ValidateType,
+          help: "최대 몇자리",
+        };
+      case "pattern":
+        return {
+          hasFeedback: true,
+          validateStatus: "error" as ValidateType,
+          help: "형식이 일치하지 않습니다.",
+        };
+      default:
+        break;
+    }
+  };
 
-  //     switch (errorType) {
-  //       case 'required': {
-  //         defaultErrorMessage = '필수항목';
-  //         break;
-  //       }
-  //     }
+  const rules: Rules = { required: required };
 
-  //     return defaultErrorMessage;
-  //   };
+  if (pattern) {
+    rules.pattern = pattern;
+  }
+  if (minLength) {
+    rules.minLength = minLength;
+  }
+  if (maxLength) {
+    rules.maxLength = maxLength;
+  }
+  if (validate) {
+    rules.validate = validate;
+  }
 
   return (
     <Wrapper>
       {label && <Label required={required}>{label}</Label>}
-      <Field
-        // name={name}
-        required={required}
-        // error={error}
-        // errorMessage={getErrorMessage()}
-        //   placeholder={placeholder}
-        //   defaultValue={defaultValue}
-        //   {...leftProps}
-        //   {...getInputType(type)}
-      />
+      <Form.Item {...getErrorConfig()}>
+        <Field name={name} control={control} rules={rules} />
+      </Form.Item>
+
+      {/* {error && <Error error={error}>{errorMessage}</Error>} */}
     </Wrapper>
   );
 };

@@ -182,13 +182,6 @@ const SocialLoginDesc = styled.div`
   text-align: center;
 `;
 
-const getDecoratorText = () => {
-  let text = ["Hello,", "你好!", "Hola,", "Hallo,", "Ciao!", "Salut!"].filter(
-    (_, idx) => idx === Math.floor(Math.random() * 6)
-  )[0];
-  return text ? text : "Hello,";
-};
-
 const SignIn = () => {
   const dispatch = useDispatch();
   const router = useRouter();

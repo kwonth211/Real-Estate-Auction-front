@@ -6,12 +6,6 @@ import styled from "styled-components";
 // import Button from '@/components/Button';
 import Layout from "@/components/layout";
 import SignUpForm from "./signupForm";
-// import { saveSignUpForm, temporarySaveSignUpForm, signInAction } from '@/components/auth/action';
-// import { useSession } from '@/hooks/session';
-// import colors from '@/utils/colors';
-// import SignUpForm from './SignUpForm';
-// import SignUpTerm from './SignUpTerm';
-// import TagManager from 'react-gtm-module';
 
 const defaultValue = {
   birthday: null,
@@ -24,18 +18,6 @@ const defaultValue = {
   rePassword: null,
   terms: null,
 };
-
-const Wrapper = styled.div`
-  /* background-color: #f5f5f5; */
-  /* width: 100%;
-  height: 100%; */
-  padding-top: 30px;
-  padding-bottom: 130px;
-  @media (max-width: 640px) {
-    padding-top: 40px;
-    height: auto;
-  }
-`;
 
 const Container = styled.div`
   width: 100%;
@@ -89,14 +71,12 @@ const SignUp = () => {
 
   return (
     <Layout>
-      {/* <Wrapper> */}
       <Container>
         <TitleWrapper>
           <Title>회원가입</Title>
         </TitleWrapper>
         <SignUpForm />
       </Container>
-      {/* </Wrapper> */}
     </Layout>
   );
 };
