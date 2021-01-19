@@ -18,7 +18,8 @@ interface FieldProps extends Rules {
   label?: string;
   type?: string;
   name: string;
-  methods: any;
+  methods: any; //todo typeing
+  placeholder?: string;
   errorMessage?: string;
 }
 
@@ -38,6 +39,7 @@ const Field: React.FC<FieldProps> = ({
   maxLength,
   validate,
   errorMessage,
+  placeholder,
   required = false,
 }) => {
   let Field = null;

@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signUp } from "./action";
-
+import { signup } from "./action";
+import Notification from "@/components/common/modal/notification";
 // import { Court } from "./";
 
-export type SignUpState = {
+export type SignupState = {
   status: string;
   loading: boolean;
   error: any;
 };
 
-const initialState: SignUpState = {
+const initialState: SignupState = {
   status: null,
   loading: false,
   error: null,
 };
 
-export const authSlicce = createSlice({
+export const signupSlice = createSlice({
   name: "auth/signup",
   initialState,
   reducers: {
@@ -23,23 +23,25 @@ export const authSlicce = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signUp.pending, (state) => {
+      .addCase(signup.pending, (state) => {
         state.error = null;
         state.loading = true;
       })
-      .addCase(signUp.fulfilled, (state, { payload }) => {
+      .addCase(signup.fulfilled, (state, { payload }) => {
         const { status } = payload;
         state.error = null;
         state.loading = false;
         state.status = status;
       })
-      .addCase(signUp.rejected, (state, { payload }) => {
-        state.error = payload;
+      .addCase(signup.rejected, (state, { payload: { errorMessage } }) => {
+        state.error = errorMessage;
         state.loading = false;
+        Notification("error", "에러", errorMessage);
+        // Todo Modal Notification.
       });
   },
 });
 
-export const { reset } = authSlicce.actions;
+export const { reset } = signupSlice.actions;
 
-export default authSlicce.reducer;
+export default signupSlice.reducer;

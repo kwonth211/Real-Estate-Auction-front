@@ -6,6 +6,7 @@ import Axios from "axios";
 
 // import { refreshSession } from '@/hooks/session';
 
+const RESPONST_STATUS_CODE_REJECT = 400;
 const RESPONSE_STATUS_CODE_NO_SESSION = 401;
 const RESPONST_STATUS_CODE_INTERNAL = 500;
 
@@ -20,22 +21,27 @@ const successHandler = (res) => {
 };
 
 const errorHandler = (error) => {
-  const { statusCode } = error?.response?.data?.error;
-  if (statusCode === RESPONSE_STATUS_CODE_NO_SESSION) {
+  const { status, message } = error?.response?.data?.error;
+  if (status === RESPONSE_STATUS_CODE_NO_SESSION) {
     // refreshSession();
   }
-  if (statusCode === RESPONST_STATUS_CODE_INTERNAL) {
+  if (status === RESPONST_STATUS_CODE_INTERNAL) {
     const erressage = {
-      response: {
-        data: { message: "오류가 발생했습니다. 잠시후 다시 시도해주세요" },
-      },
+      data: { message: "오류가 발생했습니다. 고객센터로 문의해주세요." },
+    };
+    return Promise.reject(erressage);
+  }
+
+  if (status === RESPONST_STATUS_CODE_REJECT) {
+    const erressage = {
+      data: { message },
     };
     return Promise.reject(erressage);
   }
   return Promise.reject(error);
 };
 
-// defaultAxios.interceptors.response.use(successHandler, errorHandler);
+axios.interceptors.response.use(successHandler, errorHandler);
 
 // const emailAxios = Axios.create({
 //   baseURL: process.env.NEXT_PUBLIC_EMAIL_SERVER_URL,

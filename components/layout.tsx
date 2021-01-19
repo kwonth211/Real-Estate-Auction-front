@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   max-width: ${(props) => "1920px"};
   width: 100%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -18,7 +19,8 @@ const Container = styled.div`
   max-width: 1650px;
   margin: 0 auto;
   margin-top: 80px;
-  position: relative;
+  /* position: relative; */
+  /* height: 100vh; */
   @media (max-width: 640px) {
     margin-top: 50px;
   }

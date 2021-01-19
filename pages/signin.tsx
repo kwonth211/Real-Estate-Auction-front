@@ -3,7 +3,7 @@
 //
 
 import React from "react";
-import SignInFrom from "@/components/auth/signin";
+import SignInFrom from "@/components/auth/signin/signin";
 
 /**
  * SignIn form

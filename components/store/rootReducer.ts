@@ -3,11 +3,14 @@ import { combineReducers } from "@reduxjs/toolkit";
 // Reducers
 import courtReducer from "@/components/court/courtSlice";
 import landReducer from "@/components/land/landSlice";
-import authReducer from "@/components/auth/signup/signupSlice";
-// import todosReducer from 'features/todos/todosSlice'
-// import usersReducer from 'features/users/usersSlice'
-// import visibilityFilterReducer from 'features/visibilityFilter/filtersSlice'
-// import authReducer from 'features/auth/authSlice'
+import signupReducer from "@/components/auth/signup/signupSlice";
+import signinReducer from "@/components/auth/signin/signinSlice";
+
+//Todo combine Reducer not auth
+const authReducer = combineReducers({
+  signin: signinReducer,
+  signup: signupReducer,
+});
 
 const rootReducer = combineReducers({
   court: courtReducer,
