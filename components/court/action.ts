@@ -3,16 +3,29 @@ import { axios } from "../../libs/axios";
 import { CourtState } from "./courtSlice";
 
 // Types
+interface MyKnownError {
+  errorMessage: string;
+}
 
-export const findCourtList = createAsyncThunk<CourtState>( // 성공 시 리턴 타입
+export const findCourtList = createAsyncThunk<
+  CourtState,
+  {
+    rejectValue: MyKnownError;
+  }
+>( // 성공 시 리턴 타입
   // { rejectValue: MyKnownError } // thunkApi 정의({dispatch?, state?, extra?, rejectValue?})
   "court/list",
-  async (userId, thunkAPI) => {
+  async (userId, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/court/list`);
       return data;
-    } catch (e) {
-      // return rejectWithValue({ errorMessage: "알 수 없는 에러가 발생했습니다." });
+    } catch (response) {
+      const {
+        data: { message },
+      } = response;
+      return rejectWithValue({
+        errorMessage: message,
+      });
     }
   }
 );

@@ -28,10 +28,12 @@ export const signinSlice = createSlice({
         state.loading = true;
       })
       .addCase(signin.fulfilled, (state, { payload }) => {
-        const { status } = payload;
-        state.error = null;
-        state.loading = false;
-        state.status = status;
+        if (payload.status === 200) {
+          localStorage.setItem("token", payload.token);
+          state.error = null;
+          state.loading = false;
+          state.status = payload.status;
+        }
       })
       .addCase(signin.rejected, (state, { payload }) => {
         if (payload) {
