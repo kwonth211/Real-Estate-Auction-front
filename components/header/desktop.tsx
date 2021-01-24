@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled, { keyframes, css } from "styled-components";
 import Link from "next/link";
+
+import { useSession } from "@/hooks/session";
+
 // import LoginMenu from './LoginMenu';
 // import BottomMenu from './BottomMenu';
 // import Login from '../assets/icons/Login';
@@ -40,53 +43,6 @@ export const ImageDiv = styled.div`
   max-width: 220px;
   margin-left: 3px;
   object-fit: contain;
-`;
-
-const TopRowText = styled.div`
-  font-size: 14px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  text-align: center;
-  color: #000000;
-`;
-
-const ChallengeMenuText = styled.div`
-  display: flex;
-  align-items: center;
-  background: #f5333f;
-  color: white;
-  border-radius: 15px;
-  height: 25px;
-  text-align: center;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  -webkit-animation: blink-2 2s ease-in infinite both;
-  animation: blink-2 2s ease-in infinite both;
-`;
-
-const ShowAllButton = styled.div`
-  font-size: 14px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.3px;
-  width: 71px;
-  background: black;
-  color: white;
-  height: 24px;
-  border-radius: 4px;
-  text-align: center;
-  padding-left: 10px;
 `;
 
 export const LogoWrapper = styled.div`
@@ -151,6 +107,8 @@ const LoginWrapper = styled.div`
 
 const Desktop = () => {
   const [sticky, setSticky] = useState(false);
+
+  const session = useSession();
 
   //   const { scrollY, direction } = useScroll(100);
 

@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { signin } from "./action";
 import Notification from "@/components/common/modal/notification";
-// import { Court } from "./";
+import { Cookies } from "react-cookie";
+import Router from "next/router";
 
 export type SignInState = {
   status: string;
@@ -15,6 +16,7 @@ const initialState: SignInState = {
   error: null,
 };
 
+const cookies = new Cookies();
 export const signinSlice = createSlice({
   name: "auth/signin",
   initialState,
@@ -29,7 +31,8 @@ export const signinSlice = createSlice({
       })
       .addCase(signin.fulfilled, (state, { payload }) => {
         if (payload.status === 200) {
-          localStorage.setItem("token", payload.token);
+          Router.push("/");
+          cookies.set("token", payload.token);
           state.error = null;
           state.loading = false;
           state.status = payload.status;

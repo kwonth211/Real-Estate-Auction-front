@@ -9,20 +9,19 @@ export async function handleAuthSSR(ctx) {
   // if context has request info aka Server Side
   if (ctx.req) {
     // ugly way to get cookie value from a string of values
-    // good enough for demostration
-    token = ctx.req.headers.cookie.replace(
+    token = ctx.req.headers.cookie?.replace(
       /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
   } else {
-    // we dont have request info aka Client Side
     token = localStorage.getItem("token");
   }
 
   try {
-    const response = await axios.get("/api/token/ping", {
+    const response = await axios.get("/auth/check", {
       headers: { Authorization: token },
     });
+
     // dont really care about response, as long as it not an error
     console.log("token ping:", response.data.msg);
   } catch (err) {
@@ -36,7 +35,7 @@ export async function handleAuthSSR(ctx) {
       });
       ctx.res.end();
     } else {
-      Router.push("/");
+      Router.push("/signin");
     }
   }
 }
