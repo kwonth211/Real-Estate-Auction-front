@@ -1,31 +1,27 @@
 import React from "react";
-import {
-  useState,
-  useEffect,
-  useContext,
-  createContext,
-  createElement,
-} from "react";
+import { useState, useEffect, createContext } from "react";
 import Router from "next/router";
 import { Cookies } from "react-cookie";
 
 import { axios } from "@/libs/axios";
+import { User } from "@/components/auth";
 
 let __AUTH_EVENT_LISTENER_ADDED = false;
 const EVENT_REFRESH_SESSION = "refresh.session";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-const SessionContext = createContext(null);
-// client side method
-const useSession = (session) => {
+const useSession = (): [User, boolean] => {
+  const [session, setSession] = useState();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    getSession();
+    async function _getSession() {
+      const session = await getSession();
+      setSession(session);
+      setLoading(false);
+    }
+    _getSession();
   }, []);
-  //   const value = useContext(SessionContext);
-
-  //   if (value) {
-  //     return _useSessionData(session);
-  //   }
+  return [session, loading];
 };
 
 const cookies = new Cookies();
@@ -35,15 +31,10 @@ const getSession = async () => {
   const res = await axios.get("/auth/session", {
     headers: { Authorization: token },
   });
-  const session = res.data;
 
-  //   const name = session?.data?.name ? session.data.name : "-";
-  //   const localStorageName =
-  //     typeof localStorage !== undefined &&
-  //     localStorage.getItem("userName") === name;
-  //   localStorageName || localStorage.setItem("userName", name);
+  const session = res?.data?.user;
 
-  return session && session.data ? session.data : null;
+  return session ? session : null;
 };
 
 const _useSessionData = (session) => {
@@ -77,25 +68,6 @@ const _useSessionData = (session) => {
   return [data, loading];
 };
 
-// client method
-const signIn = async ({ email, password } = {}) => {
-  // request to backend server
-  const signInUrl = `${BASE_URL}/auth/signin`;
-
-  const config = {
-    method: "post",
-    url: signInUrl,
-    data: { email, password },
-    mode: "cors",
-    withCredentials: true,
-  };
-
-  const res = await axios(config);
-  _refreshSession();
-
-  return res.data;
-};
-
 const signOut = async () => {
   const signoutUrl = `${BASE_URL}/auth/signout`;
 
@@ -107,10 +79,10 @@ const signOut = async () => {
     withCredentials: true,
   };
 
-  const res = await axios(config);
-  _refreshSession();
+  // const res = await axios(config);
+  // _refreshSession();
 
-  return res.data.data;
+  // return res.data.data;
 };
 
 const _refreshSession = () => {
@@ -131,4 +103,4 @@ const refreshSession = () => {
   _refreshSession();
 };
 
-export { getSession, refreshSession, signIn, signOut, useSession };
+export { getSession, refreshSession, signOut, useSession };

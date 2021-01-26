@@ -7,15 +7,15 @@ interface MyKnownError {
   errorMessage: string;
 }
 
-export const findCourtList = createAsyncThunk<
-  CourtState,
-  {
-    rejectValue: MyKnownError;
-  }
->( // 성공 시 리턴 타입
-  // { rejectValue: MyKnownError } // thunkApi 정의({dispatch?, state?, extra?, rejectValue?})
+//@Todo why arg is required?
+export const findCourtList = createAsyncThunk<CourtState>(
+// any,
+// {
+//   rejectValue: MyKnownError;
+// }
   "court/list",
-  async (userId, { rejectWithValue }) => {
+  async () => {
+    // 성공 시 리턴 타입
     try {
       const { data } = await axios.get(`/court/list`);
       return data;
@@ -23,9 +23,9 @@ export const findCourtList = createAsyncThunk<
       const {
         data: { message },
       } = response;
-      return rejectWithValue({
-        errorMessage: message,
-      });
+      // return rejectWithValue({
+      //   errorMessage: message,
+      // });
     }
   }
 );

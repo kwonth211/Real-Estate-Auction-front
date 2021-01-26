@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import Header from "@/components/header";
+import { Header } from "@/components/header";
 import Footer from "./footer";
+import Head from "next/head";
 
 // import test from "@/components/footer/footer";
 
@@ -30,6 +31,12 @@ const Layout = ({ children }) => {
   return (
     <>
       <Wrapper>
+        <Head>
+          <meta charSet="UTF-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta property="og:locale" content="ko_KR" />
+          <meta property="og:type" content="website" />
+        </Head>
         <Header key="header" />
         <main>
           <Container>{children}</Container>

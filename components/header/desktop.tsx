@@ -106,20 +106,11 @@ const LoginWrapper = styled.div`
 `;
 
 const Desktop = () => {
-  const [sticky, setSticky] = useState(false);
+  const [session, loading] = useSession();
 
-  const session = useSession();
-
-  //   const { scrollY, direction } = useScroll(100);
-
-  //   useEffect(() => {
-  //     if (scrollY < 68 || direction === "up") {
-  //       setSticky(false);
-  //     } else {
-  //       setSticky(true);
-  //     }
-  //   }, [scrollY, direction]);
-
+  if (loading) {
+    return null;
+  }
   return (
     <DesktopContainer>
       <TopContainer>
@@ -137,17 +128,34 @@ const Desktop = () => {
           <SignMenu>
             <div>
               <h1>
-                <Link href="/signin">
-                  <LoginWrapper>
-                    <a>로그인</a>
-                  </LoginWrapper>
-                </Link>
+                {session ? (
+                  <>
+                    <Link href="/signin">
+                      <LoginWrapper>
+                        <a>{session.name}님</a>
+                      </LoginWrapper>
+                    </Link>
+                    <Link href="/signout">
+                      <LoginWrapper>
+                        <a>로그아웃</a>
+                      </LoginWrapper>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link href="/signin">
+                      <LoginWrapper>
+                        <a>로그인</a>
+                      </LoginWrapper>
+                    </Link>
 
-                <Link href="/signup">
-                  <LoginWrapper>
-                    <a>회원가입</a>
-                  </LoginWrapper>
-                </Link>
+                    <Link href="/signup">
+                      <LoginWrapper>
+                        <a>회원가입</a>
+                      </LoginWrapper>
+                    </Link>
+                  </>
+                )}
               </h1>
             </div>
           </SignMenu>
