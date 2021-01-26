@@ -23,7 +23,6 @@ module.exports = {
   webpack(config, options) {
     const { dev, isServer } = options;
 
-    console.log(dev);
     // Do not run type checking twice:
     if (dev && isServer) {
       config.plugins.push(new ForkTsCheckerWebpackPlugin());

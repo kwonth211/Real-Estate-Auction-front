@@ -18,15 +18,10 @@ export async function handleAuthSSR(ctx) {
   }
 
   try {
-    const response = await axios.get("/auth/check", {
+    const response = await axios.get("/auth/user-info", {
       headers: { Authorization: token },
     });
-
-    // dont really care about response, as long as it not an error
-    console.log("token ping:", response.data.msg);
   } catch (err) {
-    // in case of error
-    // console.log(err.response.data.msg);
     console.log("redirecting back to main page");
     // redirect to login
     if (ctx.res) {

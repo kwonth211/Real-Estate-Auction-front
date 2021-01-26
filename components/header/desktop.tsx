@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled, { keyframes, css } from "styled-components";
 import Link from "next/link";
 
-import { useSession } from "@/hooks/session";
+import { useSession, signOut } from "@/hooks/session";
 
 // import LoginMenu from './LoginMenu';
 // import BottomMenu from './BottomMenu';
@@ -55,25 +55,6 @@ export const TopContainer = styled.div`
   display: flex;
   padding-bottom: 10px;
 `;
-const fadeOut = keyframes`
-    0% {
-      opacity: 1;
-
-    }
-    100% {
-      opacity: 0;
-
-    }
-`;
-const fadeIn = keyframes`
-   0% {
-      opacity: 0;
-
-    }
-    100% {
-      opacity: 1;
-    }
-`;
 
 export const OneMoreMenuText = styled.div`
   display: flex;
@@ -111,6 +92,7 @@ const Desktop = () => {
   if (loading) {
     return null;
   }
+
   return (
     <DesktopContainer>
       <TopContainer>
@@ -135,11 +117,9 @@ const Desktop = () => {
                         <a>{session.name}님</a>
                       </LoginWrapper>
                     </Link>
-                    <Link href="/signout">
-                      <LoginWrapper>
-                        <a>로그아웃</a>
-                      </LoginWrapper>
-                    </Link>
+                    <LoginWrapper onClick={signOut}>
+                      <a>로그아웃</a>
+                    </LoginWrapper>
                   </>
                 ) : (
                   <>
