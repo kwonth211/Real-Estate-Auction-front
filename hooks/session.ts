@@ -5,8 +5,8 @@ import { Cookies } from "react-cookie";
 import { axios } from "@/libs/axios";
 import { User } from "@/components/auth";
 
-const useSession = (initSession?): [any, boolean] => {
-  const [session, setSession] = useState(initSession);
+const useSession = (): [any, boolean] => {
+  const [session, setSession] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const useSession = (initSession?): [any, boolean] => {
     }
     _getSession();
   }, []);
+
   return [session, loading];
 };
 
@@ -35,6 +36,9 @@ const getSession = async () => {
 
 export const signOut = () => {
   Router.push("/");
+  setTimeout(() => {
+    Router.reload();
+  }, 100);
   cookies.set("token", "");
 };
 

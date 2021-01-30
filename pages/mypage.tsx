@@ -2,10 +2,6 @@ import React from "react";
 
 import { axios } from "@/libs/axios";
 import { handleAuthSSR } from "@/libs/handleAuth";
-// const serverUrl = 'http://localhost:3001';
-
-// // set up cookies
-// const cookies = new Cookies();
 
 export async function getServerSideProps(ctx) {
   // Must validate JWT
@@ -17,19 +13,6 @@ export async function getServerSideProps(ctx) {
 }
 
 const Secret = () => {
-  // const onPingCall = async (e) => {
-  //   const token = localStorage.getItem("token");
-
-  //   try {
-  //     const res = await axios.get("/api/ping", {
-  //       headers: { Authorization: token },
-  //     });
-  //     console.log(res.data.msg);
-  //   } catch (err) {
-  //     //   console.log(err.response.data.msg);
-  //   }
-  // };
-
   return (
     <div>
       <h2>Secret page</h2>

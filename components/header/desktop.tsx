@@ -4,11 +4,6 @@ import Link from "next/link";
 
 import { useSession, signOut } from "@/hooks/session";
 
-// import LoginMenu from './LoginMenu';
-// import BottomMenu from './BottomMenu';
-// import Login from '../assets/icons/Login';
-// import { useScroll } from '@/hooks/useScroll';
-
 export const DesktopContainer = styled.div`
   justify-content: space-between;
   align-items: center;
@@ -153,8 +148,6 @@ const Desktop = () => {
           )} */}
         </TopRow>
       </TopContainer>
-
-      {/* <BottomContainer sticky={sticky}>{!sticky && <BottomMenu />}</BottomContainer> */}
     </DesktopContainer>
   );
 };

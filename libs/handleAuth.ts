@@ -2,7 +2,6 @@ import Router from "next/router";
 import { axios } from "@/libs/axios";
 
 // set up cookies
-
 export async function handleAuthSSR(ctx) {
   let token = null;
 
